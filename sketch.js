@@ -1,15 +1,26 @@
-var nums = [100,25,44,72];
-
-var num = 23;
+var bubbles = [];
 
 function setup() {
-    createCanvas(400, 400);
+  createCanvas(600, 400);
+  for (var i = 0; i < 10; i++){
+    var x = random(width);
+    var y = random(height);
+    bubbles.push(new Bubble(x, y));
   }
-  
-  function draw() {
-    background(0);
+}
 
-    ellipse(100, 200, num, num);
-
-    ellipse(200, 200, nums[2], nums[2]);
+function draw() {
+  background(0);
+  for(var i = 0; i < bubbles.length; i++){
+    bubbles[i].move();
+    bubbles[i].display();
   }
+}
+
+
+
+function mouseClicked() {
+  var x = mouseX;
+  var y = mouseY;
+  bubbles.push(new Bubble(x, y));
+}
