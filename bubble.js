@@ -3,11 +3,12 @@ class Bubble {
     this.x = x;
     this.y = y;
     this.size = size;
-    this.brightness = 0;
+    this.brightness = 0; 
   }
 
   display() {
     stroke(255);
+    fill(this.brightness, 100);
     ellipse(this.x, this.y, this.size, this.size);
   }
 
@@ -16,11 +17,17 @@ class Bubble {
     this.y = this.y + random(-1, 1);
   }
 
-  clicked(){
-    let d = distance(mouseX, mouseY, this.x, this.y)
-    if(d < this.size/2){
-      this.brightness = 255;
-      console.log("circle clicked");
-    }
+  changeColor(bright){
+    this.brightness = bright;
   }
+
+  contains(px,py){
+  let d = distance(px, py, this.x, this.y)
+    if(d < this.size/2){
+      return true;
+    }else{
+      return false;
+    }
+}
+
 }

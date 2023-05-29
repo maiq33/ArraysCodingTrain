@@ -1,5 +1,6 @@
 var bubbles = [];
 
+
 function setup() {
   createCanvas(600, 400);
   for (var i = 0; i < 10; i++){
@@ -12,8 +13,13 @@ function setup() {
 
 function draw() {
   background(0);
-  fill(this.brightness, 100);
+  
   for(var i = 0; i < bubbles.length; i++){
+    if(bubbles[i].contains(mouseX,mouseY)){
+      bubbles[i].changeColor(255);
+    }else{
+      bubbles[i].changeColor(0);
+    }
     bubbles[i].move();
     bubbles[i].display();
   }
@@ -30,9 +36,10 @@ function mouseClicked() {
 */
 
 function mouseClicked() {
-
-  for(var i = 0; i < bubbles.length; i++){
-    bubbles[i].clicked();
+    for(var i = bubbles.length-1; i >= 0; i--){
+      if(bubbles[i].contains(mouseX,mouseY)){
+        bubbles.splice(i,1);
+      }
   }
 }
 
